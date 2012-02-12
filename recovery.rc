@@ -1,0 +1,49 @@
+on early-init
+    start ueventd
+    wait /dev/block/mmcblk0
+
+on init
+    export PATH /sbin
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /sdcard
+
+    symlink /system/etc /etc
+
+    mkdir /boot
+    mkdir /sdcard
+    mkdir /system
+    mkdir /data
+    mkdir /cache
+    mount /tmp /tmp tmpfs
+    mount rootfs rootfs / rw remount
+    mount ext4 /dev/block/mmcblk0p27 /system rw barrier=1,data=journal
+    mount vfat /dev/block/mmcblkp1 /sdcard rw
+    mount ext4 /dev/block/mmcblk0p30 /data nosuid nodev barrier=1,data=journal,noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p28 /cache nosuid nodev barrier=1
+    chown system system /data
+    chmod 0771 /data
+    wait /dev/graphics/fb0
+    wait /dev/tty0
+
+    
+on boot
+
+    ifup lo
+    hostname localhost
+    domainname localdomain
+
+    class_start default
+
+service ueventd /sbin/ueventd
+    critical
+
+service recovery /sbin/recovery
+
+service adbd /sbin/adbd recovery
+
+on property:persist.service.adb.enable=1
+    start adbd
+
+on property:persist.service.adb.enable=0
+    stop adbd

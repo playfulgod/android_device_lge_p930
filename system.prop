@@ -1,0 +1,140 @@
+# system props for the cne module
+#
+
+#LGE_S sy.yun Temporary Blocked CNE feature
+# Block reason :
+#      Do not add default entry in routing table when CNE is active
+#      Since CNE already takes care of adding default entry to main routing table,
+#      the call to addDefaultRoute in connectivity service causes another default entry is added.
+#      CNE also needs to take care of adding default entry in mPDP.
+# LGE comment :
+#      As CNE does not create default routing table on version i_csfb_fc_3035 and 3037,
+#      LG Data Team have no chioce but to blocking CNE feature.
+#      But, As Qualcomm mentioned before, It may occur mpdp problem.
+#      Therefore, It will be fixed to create default route table by CNE before the mPDP feature is enabled.
+#persist.cne.UseCne=vendor
+persist.cne.UseCne=TemporaryBlockedByLGEData
+#LGE_E sy.yun Temporary Blocked CNE feature
+
+persist.cne.bat.range.low.med=30
+persist.cne.bat.range.med.high=60
+persist.cne.loc.policy.op=/system/etc/OperatorPolicy.xml
+persist.cne.loc.policy.user=/system/etc/UserPolicy.xml
+persist.cne.bwbased.rat.sel=false
+persist.cne.snsr.based.rat.mgt=false
+persist.cne.bat.based.rat.mgt=false
+persist.cne.rat.acq.time.out=30000
+persist.cne.rat.acq.retry.tout=0
+
+ro.hdmi.enable=true
+lpa.decode=true
+lpa.use-stagefright=true
+
+#system props for the MM modules
+
+media.stagefright.enable-player=true
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=false
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+
+#
+# youngjun.yun.110420
+# system props for NexPlayer
+#
+media.nexplayer.disable-player=false
+media.nexplayer.disable-scan=false
+
+#
+#sejun.park 08.14
+media.nexplayer.enable-lpa=true
+lpa.decode=false
+
+#
+# system props for the data modules
+#
+ro.use_data_netmgrd=true
+
+#
+# system props for SD card emulation of emmc partition
+#
+ro.emmc.sdcard.partition=17
+
+#system props for time-services
+persist.timed.enable=true
+
+# System props for audio
+persist.audio.fluence.mode=endfire
+persist.audio.vr.enable=false
+
+#
+# system prop for opengles version
+#
+# 131072 is decimal for 0x20000 to report version 2
+ro.opengles.version=131072
+
+#
+# system prop for Bluetooth Auto connect for remote initated connections
+#
+ro.bluetooth.remote.autoconnect=true
+
+#
+# system prop for Bluetooth FTP profile
+#
+ro.qualcomm.bluetooth.ftp=true
+#
+# system prop for requesting Master role in incoming Bluetooth connection.
+#
+ro.bluetooth.request.master=true
+# system property for Bluetooth discoverability time out in seconds
+# 0: Always discoverable
+debug.bt.discoverable_time=0
+
+#jonghwan.ko@lge.com
+# System property for cabl
+ro.qualcomm.cabl=1
+
+#lock screen setting [heekyung.seo@lge.com]
+keyguard.no_require_sim=1
+
+# system prpo for sound exeption
+# jdragon.lee@lge.com
+ro.lge.sound.case.exception=true
+
+
+#
+# ADDITIONAL_BUILD_PROPERTIES
+#
+user.feature.ers=true
+user.feature.flex=true
+user.feature.lgdrm=true
+user.feature.lgresource=true
+user.feature.lgpoweroff=true
+user.feature.imp_sf_flinger=false
+user.feature.imp_listviewdrag=true
+user.feature.preload_so=true
+user.feature.preload_del=true
+user.feature.lock_sui=true
+user.feature.sui=true
+user.feature.wapservice=true
+user.feature.scroller=true
+user.feature.veloctracker=true
+user.feature.orientation=true
+user.feature.cursorchecker=true
+ro.config.ringtone=00_ATnT_Tone.ogg
+ro.config.notification_sound=01_Acoustic_Guitar.ogg
+ro.config.alarm_alert=Alarm_Beep01.ogg
+ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
+ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
+ro.com.google.locationfeatures=1
+ro.setupwizard.mode=DISABLED
+ro.com.google.gmsversion=2.3_r7
+ro.monkey=0
+ro.com.google.clientidbase=android-lge
+ro.com.google.clientidbase.gmm=android-lge
+ro.com.google.clientidbase.yt=android-lge
+ro.com.google.clientidbase.am=android-att-us
+ro.com.google.clientidbase.ms=android-att-us
+net.bt.name=Android
+dalvik.vm.stack-trace-file=/data/anr/traces.txt
