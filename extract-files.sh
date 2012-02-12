@@ -15,7 +15,7 @@
 # limitations under the License.
 
 VENDOR=lge
-DEVICE=esteem
+DEVICE=p930
 
 mkdir -p ../../../vendor/$VENDOR/$DEVICE/proprietary
 mkdir -p ../../../vendor/$VENDOR/$DEVICE/proprietary/bin
